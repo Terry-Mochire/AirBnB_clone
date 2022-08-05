@@ -115,3 +115,4 @@ $ ./console.py
 (hbnb) destroy User 670265eb-5982-489e-8b92-2dff054f0776
 (hbnb)
 ```
+Test for initial commit
