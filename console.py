@@ -18,14 +18,14 @@ class HBNBCommand(cmd.Cmd):
     """A console class for the AirBnB-Clone project"""
 
     prompt: str = '(hbnb)'
-    __class.lst = {
+    __class_lst = {
         BaseModel.__name__: BaseModel,
-        User.__name: User,
-        State.__name: State,
-        City.__name: City,
-        Place.__name: Place,
-        Amenity.__name: Amenity,
-        Review.__name: Review
+        User.__name__: User,
+        State.__name__: State,
+        City.__name__: City,
+        Place.__name__: Place,
+        Amenity.__name__: Amenity,
+        Review.__name__: Review
     }
     __class_funcs = ["all", "count", "show", "destroy", "update"]
 
@@ -97,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
                 Ex: $ show BaseModel 1234-1234-1234
         """
         arg_lst = HBNBCommand.parse(arg)
-        db = storage.all()
+        db = models.storage.all()
         if not len(arg_lst):
             print("** class name missing **")
         elif (arg_lst[0] not in HBNBCommand.__class_lst.keys()):
@@ -129,8 +129,8 @@ class HBNBCommand(cmd.Cmd):
                 Ex: $ destroy BaseModel 1234-1234-1234
         """
         arg_lst = HBNBCommand.parse(arg)
-        storage.reload()
-        db = storage.all()
+        models.storage.reload()
+        db = models.storage.all()
         if not len(arg_lst):
             print("** class name missing **")
         elif (arg_lst[0] not in HBNBCommand.__class_lst.keys()):
@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             # print(storage.__class__.__name__.__objects)
             del db["{}.{}".format(arg_lst[0], arg_lst[1])]
-            storage.save()
+            models.storage.save()
 
     def help_destroy(self):
         """
@@ -163,7 +163,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             objl = []
-            for obj in storage.all().values():
+            for obj in models.storage.all().values():
                 if len(arg_list) > 0 and arg_list[0] == obj.__class__.__name__:
                     objl.append(obj.__str__())
                 elif len(arg_list) == 0:
@@ -186,7 +186,7 @@ class HBNBCommand(cmd.Cmd):
                       "aibnb@holbertonschool.com"
         """
         arg_list = HBNBCommand.parse(arg)
-        objdict = storage.all()
+        objdict = models.storage.all()
 
         if len(arg_list) == 0:
             print("** class name missing **")
@@ -225,7 +225,7 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[k] = valtype(v)
                 else:
                     obj.__dict__[k] = v
-        storage.save()
+        models.storage.save()
 
     def help_update(self):
         """
@@ -254,7 +254,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             objl = []
-            for obj in storage.all().values():
+            for obj in models.storage.all().values():
                 if len(arg_list) > 0 and arg_list[0] == obj.__class__.__name__:
                     objl.append(obj.__str__())
                 elif len(arg_list) == 0:

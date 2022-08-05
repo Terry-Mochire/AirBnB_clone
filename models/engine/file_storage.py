@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """File Storage for AirBnB Clone"""
 import json
+import models
 from os.path import exists
 
 
@@ -28,13 +29,13 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        from ..base_model import BaseModel
-        from ..user import User
-        from ..state import State
-        from ..city import City
-        from ..amenity import Amenity
-        from ..place import Place
-        from ..review import Review
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
 
         if exists(self.__file_path):
             with open(self.__file_path) as jsonfile:
