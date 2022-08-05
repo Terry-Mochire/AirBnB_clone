@@ -1,5 +1,3 @@
-
-
 #!/usr/bin/python3
 """
 A command line interpreter for AirBnB clone
@@ -14,6 +12,7 @@ from models.city import City
 from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
+
 
 class HBNBCommand(cmd.Cmd):
     """A console class for the AirBnB-Clone project"""
@@ -43,7 +42,6 @@ class HBNBCommand(cmd.Cmd):
             if x != '':
                 narg_list.append(x)
         return narg_list
-
 
     def do_quit(self, arg):
         """Exits the program"""
@@ -179,6 +177,7 @@ class HBNBCommand(cmd.Cmd):
         print("""Prints all string representation of all instances based or
             not on the class name.
                 Ex: $ all BaseModel or $ all""")
+
     def do_update(self, arg):
         """
             Updates an instance based on the class name and id by adding or
@@ -262,7 +261,7 @@ class HBNBCommand(cmd.Cmd):
                     objl.append(obj.__str__())
             print(len(objl))
 
+
 if __name__ == "__main__":
     console = HBNBCommand()
     console.cmdloop()
-
