@@ -3,8 +3,8 @@
 import os
 import time
 import unittest
+import models
 from datetime import datetime
-from models import storage
 from models.base_model import BaseModel
 
 
