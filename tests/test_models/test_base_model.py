@@ -24,17 +24,17 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(bm1.created_at, datetime)
         self.assertLess(bm1.created_at, snapshot2)
         self.assertGreater(bm1.created_at, snapshot)
-        
+
         self.assertIsInstance(bm1.updated_at, datetime)
         self.assertLess(bm1.updated_at, snapshot2)
         self.assertGreater(bm1.updated_at, snapshot)
-        
+
         bm1.save()
         self.assertIsInstance(bm1.updated_at, datetime)
         self.assertGreater(bm1.updated_at, snapshot)
         self.assertGreater(bm1.updated_at, snapshot2)
         del bm1
-        
+
     def test_init_dict(self):
         """test dict basemodel init"""
         test_dict = {'updated_at': datetime(1963, 11, 22, 12, 30, 00, 716921).isoformat('T')
